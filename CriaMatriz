@@ -1,0 +1,38 @@
+using System;
+
+public class Matriz
+{
+    public int[,] Create(int line, int column)
+    {
+        Random random = new Random();
+        int[,] matriz = new int[line, column];
+        int escape = random.Next(0, line * column); // Determina uma posição aleatória para o valor 2
+        int count = 0; // Contador para rastrear a posição atual
+
+        for (int l = 0; l < line; l++)
+        {
+            for (int c = 0; c < column; c++)
+            {  
+                if (count == escape)
+                {
+                    matriz[l, c] = 2; // Define o valor 2 na posição aleatória
+                }
+                else
+                {
+                    matriz[l, c] = random.Next(0, 2); // Define valores aleatórios 0 ou 1
+                }
+                count++;
+                Console.Write(matriz[l, c] + " "); // Imprime o valor da célula
+            }
+            Console.WriteLine(); // Nova linha após cada linha da matriz
+        }
+        return matriz;
+    }
+
+    static void Main(string[] args)
+    {
+        Matriz matriz = new Matriz();
+        Console.WriteLine("Matriz Gerada:");
+        matriz.Create(8, 8); // Cria e imprime uma matriz personalizada
+    }
+}
